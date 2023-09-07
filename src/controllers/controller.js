@@ -23,3 +23,26 @@ export const getContacts = async (req, res) => {
     console.log(err);
   }
 };
+
+export const getSpecificContact = async (req, res) => {
+  try {
+    const SpeContact = await Contact.findById(req.params.contactId);
+    res.json(SpeContact);
+  } catch (error) {
+    res.status(500).send(error);
+    console.log(err);
+  }
+};
+
+export const updateContact = async (req, res) => {
+  try {
+    const updateConatct = await Contact.findOneAndUpdate(
+      { _id: req.params.contactId },
+      req.body,
+      { new: true }
+    );
+    res.json(updateConatct);
+  } catch (error) {
+    console.log(err);
+  }
+};

@@ -36,13 +36,22 @@ export const getSpecificContact = async (req, res) => {
 
 export const updateContact = async (req, res) => {
   try {
-    const updateConatct = await Contact.findOneAndUpdate(
+    const updateContact = await Contact.findOneAndUpdate(
       { _id: req.params.contactId },
       req.body,
       { new: true }
     );
-    res.json(updateConatct);
+    res.json(updateContact);
   } catch (error) {
     console.log(err);
+  }
+};
+
+export const deleteContact = async (req, res) => {
+  try {
+    await Contact.findByIdAndRemove({ _id: req.params.contactId });
+    res.json("Delete successful");
+  } catch (error) {
+    console.log(error);
   }
 };

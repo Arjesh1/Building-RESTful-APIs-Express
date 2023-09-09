@@ -10,7 +10,7 @@ export const addNewContact = async (req, res) => {
     const savedContact = await newContact.save();
     res.json(savedContact);
   } catch (err) {
-    res.status(500).send(err);
+    console.log(err);
   }
 };
 
@@ -19,7 +19,6 @@ export const getContacts = async (req, res) => {
     const contacts = await Contact.find({});
     res.json(contacts);
   } catch (err) {
-    res.status(500).send(err);
     console.log(err);
   }
 };
@@ -29,7 +28,6 @@ export const getSpecificContact = async (req, res) => {
     const SpeContact = await Contact.findById(req.params.contactId);
     res.json(SpeContact);
   } catch (error) {
-    res.status(500).send(error);
     console.log(err);
   }
 };
